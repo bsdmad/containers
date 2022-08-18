@@ -45,7 +45,7 @@ jobs:
         with:
           context: ./${{ matrix.target }}
           push: true
-          tags: ghcr.io/bsdmad/${{ matrix.target }}:${{ env.DOCKER_TAG }}
+          tags: ghcr.io/bsdmad/${{ matrix.target }}:latest
           labels: ${{ steps.meta.outputs.labels }}
 
       # - name: Build and push Docker image for apache24-php74
