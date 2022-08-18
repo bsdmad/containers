@@ -18,6 +18,10 @@ jobs:
     permissions:
       contents: read
       packages: write
+    strategy:
+      matrix:
+        target: ["for_mt/apache24-php56", "for_mt/apache24-php74", "for_mt/apache24-php80"]
+      fail-fast: true
 
     steps:
       - name: Checkout repository
@@ -36,14 +40,12 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
-      - name: Build and push Docker image for apache24-php56
+      - name: Build and push Docker images
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
-          context: ./for_mt/apache24-php56
-          # platforms: linux/amd64, linux/arm64
+          context: ./${{ matrix.target }}
           push: true
-          tags: bsdmad/apache24-php56:latest
-          # tags: ${{ steps.meta.outputs.tags }}
+          tags: ghcr.io/bsdmad/${{ matrix.target }}:${{ env.DOCKER_TAG }}
           labels: ${{ steps.meta.outputs.labels }}
 
       # - name: Build and push Docker image for apache24-php74
