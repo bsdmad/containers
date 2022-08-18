@@ -18,6 +18,7 @@ jobs:
     permissions:
       contents: read
       packages: write
+    # https://qiita.com/tomoyk/items/ab4d55cd1735bb2b579a
     strategy:
       matrix:
         target: ["for_mt/apache24-php56", "for_mt/apache24-php74", "for_mt/apache24-php80"]
@@ -47,19 +48,3 @@ jobs:
           push: true
           tags: ghcr.io/bsdmad/containers/${{ matrix.target }}:latest
           labels: ${{ steps.meta.outputs.labels }}
-
-      # - name: Build and push Docker image for apache24-php74
-      #   uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
-      #   with:
-      #     context: ./for_mt/apache24-php74
-      #     push: true
-      #     tags: ${{ steps.meta.outputs.tags }}
-      #     labels: ${{ steps.meta.outputs.labels }}
-
-      # - name: Build and push Docker image for apache24-php80
-      #   uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
-      #   with:
-      #     context: ./for_mt/apache24-php80
-      #     push: true
-      #     tags: ${{ steps.meta.outputs.tags }}
-      #     labels: ${{ steps.meta.outputs.labels }}
