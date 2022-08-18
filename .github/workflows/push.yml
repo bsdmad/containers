@@ -40,7 +40,7 @@ jobs:
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
           context: ./for_mt/apache24-php56
-          platforms: linux/amd64, linux/arm64
+          # platforms: linux/amd64, linux/arm64
           push: true
           tags: bsdmad/apache24-php56:latest
           # tags: ${{ steps.meta.outputs.tags }}
