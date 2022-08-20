@@ -10,3 +10,7 @@ RUN apt-get update && \
                       --no-install-recommends && \
       docker-php-ext-install mysqli && \
     rm -rf /var/lib/apt/lists/*
+
+# exim4 設定
+COPY update-exim4.conf.conf /etc/exim4/
+RUN update-exim4.conf
